@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { TouchableOpacity, View, Image, FlatList } from 'react-native';
+import { TouchableOpacity, View, Image, FlatList, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { GameParams } from '../../@types/@navigation';
@@ -47,11 +47,16 @@ export function Game() {
         <FlatList
           data={duos}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <DuoCard data={item} onConnect={()=>{}} />}
+          renderItem={({ item }) => <DuoCard data={item} onConnect={() => {}} />}
           horizontal
           style={styles.containerList}
-         contentContainerStyle={styles.contentList}
-         showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.contentList}
+          showsHorizontalScrollIndicator={false}
+          ListEmptyComponent={() => (
+            <Text style={styles.emptyListText}>
+              Não há anúncios publicados ainda <Entypo name="emoji-sad" size={16} color={THEME.COLORS.CAPTION_300} />
+            </Text>
+          )}
         />
       </SafeAreaView>
     </Background>
